@@ -40,7 +40,13 @@ class TommyTwitter
     tweetArray.each do |tweet|
         puts tweet.text
     end
-   end 
+  end
+
+  def search(term)
+    results = @client.search(term, :count => 10)
+    results.each {|tweet| puts tweet.text }
+  end
+
 end
 
 
@@ -51,6 +57,9 @@ if __FILE__ == $0
   tt.showRecentTweets
   puts "Tweets about Tom".center(100, "*")
   tt.showTweetsAboutTom
+  puts "Please enter a search term"
+  searchTerm = gets.chomp
+  tt.search(searchTerm)
 end
 
 
